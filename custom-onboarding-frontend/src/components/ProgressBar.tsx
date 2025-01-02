@@ -9,7 +9,7 @@ interface ProgressBarProps {
 // Progress bar component to show the current page and navigate to other pages
 const ProgressBar: React.FC<ProgressBarProps> = ({ currentPage, setCurrentPage, email }) => {
     const handleClick = (page: number) => {
-        localStorage.setItem('lastUsedPage_' + email, page.toString());
+        if(email) localStorage.setItem('lastUsedPage_' + email, page.toString());
         setCurrentPage(page);
     };
 
