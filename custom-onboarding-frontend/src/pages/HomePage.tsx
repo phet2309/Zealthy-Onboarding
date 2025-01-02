@@ -3,7 +3,7 @@ import { useLoggedIn } from '../context/LoggedInContext';
 
 // Home page component
 const HomePage = () => {
-    const { isLoggedIn, setIsLoggedIn } = useLoggedIn();
+    const { isLoggedIn } = useLoggedIn();
   
     return (
         <div className="min-w-screen min-h-screen flex items-center justify-center">
