@@ -3,16 +3,17 @@ import { fetchAdminConfig } from '../api/adminApi';
 import { fetchUserData, updateUserData } from '../api/userApi';
 import { Address, AdminConfig, UserData } from '../types';
 import { showToast } from '../components/Toast';
-import { useLocation } from 'react-router';
 import ProgressBar from '../components/ProgressBar';
+import { useLoggedIn } from '../context/LoggedInContext';
 
 // User onboarding form page
 const UserOnboardForm: React.FC = () => {
 
-  const location = useLocation();
-  const { email } = location.state || {};
+  const { emailVal } = useLoggedIn();
+  const email = emailVal;
+  
 
-  const getLastUsedPage = (email: string) => {
+  const getLastUsedPage = (email: string | null) => {
     if(!email) return 1;
     const key = 'lastUsedPage_' + email;
     if (localStorage.getItem(key)) {
@@ -124,7 +125,7 @@ const UserOnboardForm: React.FC = () => {
   return (
     <>
       <div className='min-h- min-w-full flex flex-col items-center justify-center'>
-        <ProgressBar currentPage={page} setCurrentPage={setPage} email={email} />
+        <ProgressBar currentPage={page} setCurrentPage={setPage} />
         <h1 className='text-2xl my-7'>Welcome to the Zealthy onboarding page</h1>
 
         <div className='min-w-[80%] flex flex-col'>

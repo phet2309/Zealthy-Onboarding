@@ -1,15 +1,16 @@
 import React from 'react';
+import { useLoggedIn } from '../context/LoggedInContext';
 
 interface ProgressBarProps {
     currentPage: number;
     setCurrentPage: (page: number) => void;
-    email: string;
 }
 
 // Progress bar component to show the current page and navigate to other pages
-const ProgressBar: React.FC<ProgressBarProps> = ({ currentPage, setCurrentPage, email }) => {
+const ProgressBar: React.FC<ProgressBarProps> = ({ currentPage, setCurrentPage }) => {
+    const { emailVal } = useLoggedIn();
     const handleClick = (page: number) => {
-        if(email) localStorage.setItem('lastUsedPage_' + email, page.toString());
+        if(emailVal) localStorage.setItem('lastUsedPage_' + emailVal, page.toString());
         setCurrentPage(page);
     };
 

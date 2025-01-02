@@ -6,11 +6,12 @@ import { showToast } from './Toast';
 
 // Navbar component for navigation
 const Navbar: React.FC = () => {
-  const { isLoggedIn, setIsLoggedIn } = useLoggedIn();
+  const { isLoggedIn, setIsLoggedIn, setEmailVal } = useLoggedIn();
   const navigate = useNavigate();
 
   const handleLogout = async () => {
     setIsLoggedIn(false);
+    setEmailVal(null);
     const resp = await logoutUser();
     if (resp === 'Success') {
       navigate('/user-onboard-auth', {

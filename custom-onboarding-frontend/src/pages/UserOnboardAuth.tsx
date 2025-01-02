@@ -8,7 +8,7 @@ import Input from '../components/Input';
 
 // User onboarding authentication page
 const UserOnboardAuth: React.FC = () => {
-  const { setIsLoggedIn } = useLoggedIn();
+  const { setIsLoggedIn, setEmailVal } = useLoggedIn();
   const navigate = useNavigate();
 
   const [email, setEmail] = useState<string>('');
@@ -42,8 +42,6 @@ const UserOnboardAuth: React.FC = () => {
 
   const handleCredSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Email:', email);
-    console.log('Password', password);
 
     try {
       const response = await loginUser(email, password);
@@ -51,6 +49,7 @@ const UserOnboardAuth: React.FC = () => {
       if (response === "Success") {
         console.log('Login successful');
         setIsLoggedIn(true);
+        setEmailVal(email);
         showToast("Login successful", "success");
 
         navigate('/user-onboard-form', {

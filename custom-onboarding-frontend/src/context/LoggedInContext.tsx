@@ -5,9 +5,13 @@ import { validateToken } from '../api/userApi';
 const LoggedInContext = createContext<{
   isLoggedIn: boolean;
   setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
+  emailVal: string | null;
+  setEmailVal: React.Dispatch<React.SetStateAction<string | null>>;
 }>({
   isLoggedIn: false,
-  setIsLoggedIn: () => {}
+  setIsLoggedIn: () => {},
+  emailVal: null,
+  setEmailVal: () => {},
 });
 
 const getInitialLogInVal = async (): Promise<boolean> => {
@@ -21,6 +25,7 @@ export const useLoggedIn = () => useContext(LoggedInContext);
 
 export const LoggedInProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const [emailVal, setEmailVal] = useState<string | null>(null);
 
   useEffect(() => {
     const checkLoginStatus = async () => {
@@ -32,7 +37,7 @@ export const LoggedInProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   }, []);
   
   return (
-    <LoggedInContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
+    <LoggedInContext.Provider value={{ isLoggedIn, setIsLoggedIn, emailVal, setEmailVal }}>
       {children}
     </LoggedInContext.Provider>
   );
