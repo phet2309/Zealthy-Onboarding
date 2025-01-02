@@ -33,7 +33,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/v1/users", "/v1/users/login").permitAll()
                         .requestMatchers(HttpMethod.GET, "/v1/users", "/v1/users/validate-token","/v1/admin/**").permitAll()
                         .requestMatchers(HttpMethod.PUT, "/v1/admin").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/users/logout").authenticated()
+                        .requestMatchers(HttpMethod.POST, "/v1/users/logout").authenticated()
                         .anyRequest().authenticated())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
@@ -44,7 +44,13 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowCredentials(true);
-        configuration.addAllowedOrigin("http://localhost:5173");
+
+        String frontendUrl = System.getenv("FRONTEND_URL");
+        if (frontendUrl != null) {
+            configuration.addAllowedOrigin(frontendUrl);
+        } else {
+            configuration.addAllowedOrigin("https://zealthy-onboarding-alpha.vercel.app");
+        }
 
         configuration.setAllowedHeaders(Arrays.asList(
                 HttpHeaders.AUTHORIZATION,

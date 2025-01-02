@@ -12,14 +12,15 @@ const UserOnboardForm: React.FC = () => {
   const location = useLocation();
   const { email } = location.state || {};
 
-  const getLastUsedPage = () => {
-    if (localStorage.getItem('lastUsedPage')) {
-      return parseInt(localStorage.getItem('lastUsedPage') as string);
+  const getLastUsedPage = (email: string) => {
+    const key = 'lastUsedPage_' + email;
+    if (localStorage.getItem(key)) {
+      return parseInt(localStorage.getItem(key) as string);
     }
     return 1;
   }
 
-  const [page, setPage] = React.useState<number>(getLastUsedPage());
+  const [page, setPage] = React.useState<number>(getLastUsedPage(email));
   const [adminConfig, setAdminConfig] = useState<AdminConfig[]>([]);
   const [formData, setFormData] = useState<UserData>({
     id: '',
@@ -64,7 +65,7 @@ const UserOnboardForm: React.FC = () => {
       return;
     }
     showToast('Data saved successfully', 'success');
-    localStorage.setItem('lastUsedPage', (page + 1).toString());
+    localStorage.setItem('lastUsedPage_' + email, (page + 1).toString());
     setPage(page + 1);
   }
 
@@ -223,7 +224,7 @@ const UserOnboardForm: React.FC = () => {
             <button
               type="button"
               onClick={() => {
-                localStorage.setItem('lastUsedPage', (page - 1).toString());
+                localStorage.setItem('lastUsedPage_' + email, (page - 1).toString());
                 setPage(page - 1);
               }}
               className={`min-w-[100px] p-4 mt-4 border-2 rounded hover:border-blue-600 hover:text-blue-600 
