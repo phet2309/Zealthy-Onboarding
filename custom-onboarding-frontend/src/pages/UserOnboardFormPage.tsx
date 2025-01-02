@@ -17,6 +17,7 @@ const UserOnboardForm: React.FC = () => {
     if (localStorage.getItem(key)) {
       return parseInt(localStorage.getItem(key) as string);
     }
+    localStorage.setItem(key, '1');
     return 1;
   }
 
