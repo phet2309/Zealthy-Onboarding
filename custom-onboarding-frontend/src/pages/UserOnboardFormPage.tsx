@@ -124,7 +124,7 @@ const UserOnboardForm: React.FC = () => {
   return (
     <>
       <div className='min-h- min-w-full flex flex-col items-center justify-center'>
-        <ProgressBar currentPage={page} setCurrentPage={setPage} />
+        <ProgressBar currentPage={page} setCurrentPage={setPage} email={email} />
         <h1 className='text-2xl my-7'>Welcome to the Zealthy onboarding page</h1>
 
         <div className='min-w-[80%] flex flex-col'>

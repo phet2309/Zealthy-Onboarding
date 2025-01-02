@@ -3,11 +3,13 @@ import React from 'react';
 interface ProgressBarProps {
     currentPage: number;
     setCurrentPage: (page: number) => void;
+    email: string;
 }
 
 // Progress bar component to show the current page and navigate to other pages
-const ProgressBar: React.FC<ProgressBarProps> = ({ currentPage, setCurrentPage }) => {
+const ProgressBar: React.FC<ProgressBarProps> = ({ currentPage, setCurrentPage, email }) => {
     const handleClick = (page: number) => {
+        localStorage.setItem('lastUsedPage_' + email, page.toString());
         setCurrentPage(page);
     };
 
