@@ -3,7 +3,7 @@
 This repository contains the **Zealthy Onboarding App**, a full-stack application designed for seamless user onboarding. The app features a **ReactJS-based frontend** with **TypeScript** and **Tailwind CSS**, paired with a robust **Java Spring Boot backend** and a **PostgreSQL database**.
 
 
-- **💻 App Access Link**: [Zealthy Onboarding App](#)
+- **💻 App Access Link**: [Zealthy Onboarding App](https://zealthy-onboarding-alpha.vercel.app/)
 
 
 ## 🚀 Features
