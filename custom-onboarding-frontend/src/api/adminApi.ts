@@ -1,8 +1,9 @@
 import axios from 'axios';
 import { AdminConfig, AdminRequestBody } from '../types';
+import { BACKEND_URL } from './backendUrl';
 
 // This handles the API calls to the admin endpoint
-const BASE_URL = 'http://localhost:8080/v1/admin';
+const BASE_URL = `${BACKEND_URL}/v1/admin`;
 
 // Get admin config
 export const fetchAdminConfig = async (): Promise<AdminConfig[] | string> => {

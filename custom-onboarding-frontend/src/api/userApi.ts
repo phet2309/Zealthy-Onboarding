@@ -1,8 +1,9 @@
 import axios, { AxiosResponse } from 'axios';
 import { UserData } from '../types';
+import { BACKEND_URL } from './backendUrl';
 
 // This handles the API calls to the users endpoint
-const BASE_URL = 'http://localhost:8080/v1/users';
+const BASE_URL = `${BACKEND_URL}/v1/users`;
 
 // Parse response
 const parseResponse = (response: any): UserData => {
