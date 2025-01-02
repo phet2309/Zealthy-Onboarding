@@ -35,6 +35,7 @@ const Navbar: React.FC = () => {
         )}
         <Link to="/data" className="text-md underline">Data Table</Link>
         <Link to="/admin" className="text-md underline">Admin</Link>
+        <Link to="/" className="text-md underline">Home</Link>
       </div>
     </div>
   );
