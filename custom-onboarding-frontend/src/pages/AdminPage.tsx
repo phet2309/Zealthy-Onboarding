@@ -99,7 +99,9 @@ const AdminPage: React.FC = () => {
       };
       const response = await updateAdminProperty(requestBody);
 
-      if (response === "Success") {
+      if (typeof response === 'string') {
+        showToast(`Failed to update ${key}!`, 'error');
+      } else {
         showToast(`Changes applied successfully for ${key}!`, 'success');
         setInitialAssignments({
           ...initialAssignments,
@@ -108,8 +110,7 @@ const AdminPage: React.FC = () => {
             currentPage: value.currentPage
           }
         })
-      } else {
-        showToast(`Failed to update ${key}!`, 'error');
+
       }
     }
     setInitialAssignments(assignments);

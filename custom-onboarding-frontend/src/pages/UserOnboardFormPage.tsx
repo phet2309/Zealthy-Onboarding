@@ -13,6 +13,7 @@ const UserOnboardForm: React.FC = () => {
   const { email } = location.state || {};
 
   const getLastUsedPage = (email: string) => {
+    if(!email) return 1;
     const key = 'lastUsedPage_' + email;
     if (localStorage.getItem(key)) {
       return parseInt(localStorage.getItem(key) as string);
@@ -99,6 +100,7 @@ const UserOnboardForm: React.FC = () => {
     };
 
     fetchData();
+    setPage(getLastUsedPage(email));
   }, [email]);
 
 
